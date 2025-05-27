@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import nl.grapjeje.stacktenant.views.Views;
+import nl.grapjeje.stacktenant.views.View;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -19,15 +19,17 @@ public class Main extends Application {
     public void init() throws Exception {
         springContext = SpringApplication.run(Main.class);
 
-        FXMLLoader fxmlLoader = Views.load("auth/login.fxml");
+        FXMLLoader fxmlLoader = View.load("auth/login.fxml");
         fxmlLoader.setControllerFactory(springContext::getBean);
         root = fxmlLoader.load();
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(root, 320, 240);
+        Scene scene = new Scene(root, 350, 450);
         stage.setTitle("StackTenant");
+        stage.setMinWidth(350);
+        stage.setMinHeight(450);
         stage.setScene(scene);
         stage.show();
     }

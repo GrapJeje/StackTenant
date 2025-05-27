@@ -2,12 +2,31 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="nl.grapjeje.stacktenant.controllers.Auth.LoginController" spacing="10" alignment="CENTER">
-    <Label fx:id="a" text="Welkom!" />
-    <TextField fx:id="b" promptText="Typ iets..." />
-    <Button text="Klik mij" onAction="#handleButtonClick" />
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="nl.grapjeje.stacktenant.controllers.Auth.LoginController"
+      spacing="20" alignment="CENTER" styleClass="auth-container" stylesheets="@/css/auth.css, @/css/style.css">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
 
-    <Label text="Nog geen account?" />
-    <Hyperlink text="Registreren" onAction="#handleRegisterClick"/>
+    <Label text="Welkom terug!" styleClass="header-text" />
+    <Label text="Log in om verder te gaan" styleClass="subheader-text" />
+
+    <Label fx:id="error" text=" " styleClass="error-text"/>
+    <VBox spacing="10" styleClass="form-container">
+        <TextField fx:id="email" promptText="Gebruikersnaam" styleClass="auth-field" />
+        <PasswordField fx:id="password" promptText="Wachtwoord" styleClass="auth-field" />
+
+        <HBox alignment="CENTER_RIGHT">
+            <Hyperlink text="Wachtwoord vergeten?" styleClass="forgot-password-link" />
+        </HBox>
+
+        <Button text="Inloggen" onAction="#handleButtonClick" styleClass="auth-button" />
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="5">
+        <Label text="Nog geen account?" styleClass="footer-text" />
+        <Hyperlink text="Registreren" onAction="#handleRegisterClick" styleClass="auth-link"/>
+    </HBox>
 </VBox>

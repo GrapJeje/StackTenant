@@ -2,8 +2,29 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="nl.grapjeje.stacktenant.controllers.Auth.RegisterController" spacing="10" alignment="CENTER">
-    <Label text="Al een account?" />
-    <Hyperlink text="Inloggen" onAction="#handleInloggenClick"/>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="nl.grapjeje.stacktenant.controllers.Auth.RegisterController"
+      spacing="20" alignment="CENTER" styleClass="auth-container" stylesheets="@/css/auth.css, @/css/style.css">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <Label text="Welkom!" styleClass="header-text"/>
+    <Label text="Maak een account aan!" styleClass="subheader-text"/>
+
+    <Label fx:id="error" text=" " styleClass="error-text"/>
+    <VBox spacing="10" styleClass="form-container">
+        <TextField fx:id="name" promptText="Naam" styleClass="auth-field"/>
+        <TextField fx:id="email" promptText="Email" styleClass="auth-field"/>
+        <PasswordField fx:id="password" promptText="Wachtwoord" styleClass="auth-field"/>
+        <PasswordField fx:id="secondPassword" promptText="Wachtwoord Herhalen" styleClass="auth-field"/>
+
+        <Button text="Registeren" onAction="#handleButtonClick" styleClass="auth-button"/>
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="5">
+        <Label text="Al een account?" styleClass="footer-text"/>
+        <Hyperlink text="Inloggen" onAction="#handleLoginClick" styleClass="auth-link"/>
+    </HBox>
 </VBox>
