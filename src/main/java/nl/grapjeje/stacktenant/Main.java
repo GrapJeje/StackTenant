@@ -18,7 +18,8 @@ public class Main extends Application {
     @Override
     public void init() throws Exception {
         springContext = SpringApplication.run(Main.class);
-        FXMLLoader fxmlLoader = Views.load("hello-view.fxml");
+
+        FXMLLoader fxmlLoader = Views.load("auth/login.fxml");
         fxmlLoader.setControllerFactory(springContext::getBean);
         root = fxmlLoader.load();
     }
@@ -26,7 +27,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(root, 320, 240);
-        stage.setTitle("Hello!");
+        stage.setTitle("StackTenant");
         stage.setScene(scene);
         stage.show();
     }

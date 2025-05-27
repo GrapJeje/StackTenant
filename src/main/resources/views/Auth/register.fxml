@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="nl.grapjeje.stacktenant.controllers.Auth.RegisterController" spacing="10" alignment="CENTER">
+    <Label text="Al een account?" />
+    <Hyperlink text="Inloggen" onAction="#handleInloggenClick"/>
+</VBox>
