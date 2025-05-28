@@ -28,7 +28,10 @@ public class View {
     }
 
     public static View switchScene(ActionEvent event, String path) throws IOException {
-        return switchScene(event, path, 1920, 1080);
+        View view = switchScene((Node) event.getSource(), path, 500, 500);
+        Stage stage = view.getStage();
+        stage.setMaximized(true);
+        return view;
     }
 
     public static View switchScene(ActionEvent event, String path, double width, double height) throws IOException {
@@ -36,42 +39,24 @@ public class View {
     }
 
     public static View switchScene(Node source, String path) throws IOException {
-        return switchScene(source, path, 1920, 1080);
+        View view = switchScene(source, path, 500, 500);
+        Stage stage = view.getStage();
+        stage.setMaximized(true);
+        return view;
     }
 
-//    public static View switchScene(Node source, String path, boolean setMaximized) throws IOException {
-//
-//    }
-
-//    public static View switchScene(Node source, String path, double width, double height) throws IOException {
-//        Parent root = load(path).load();
-//        Stage stage = (Stage) source.getScene().getWindow();
-//        Scene scene = new Scene(root, width, height);
-//        stage.setScene(scene);
-//
-//        View view = new View(path);
-//        view.setScene(scene);
-//        view.setStage(stage);
-//        return view;
-//    }
-
     public static View switchScene(Node source, String path, double width, double height) throws IOException {
-        // Haal de Spring ApplicationContext op
         ConfigurableApplicationContext context = Main.getSpringContext();
 
-        // Maak een nieuwe FXMLLoader met Spring integratie
         FXMLLoader loader = load(path);
-        loader.setControllerFactory(context::getBean);  // Belangrijk: gebruik Spring om controllers te maken
+        loader.setControllerFactory(context::getBean);
 
-        // Laad de FXML
         Parent root = loader.load();
 
-        // Update het scherm
         Stage stage = (Stage) source.getScene().getWindow();
         Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
 
-        // Maak een View object (indien nodig)
         View view = new View(path);
         view.setScene(scene);
         view.setStage(stage);
