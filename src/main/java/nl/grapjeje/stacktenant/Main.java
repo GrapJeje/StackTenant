@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.Getter;
 import nl.grapjeje.stacktenant.views.View;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +13,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 public class Main extends Application {
-    private static ConfigurableApplicationContext springContext;
+    @Getter
+    public static ConfigurableApplicationContext springContext;
     private Parent root;
 
     @Override
@@ -35,8 +37,9 @@ public class Main extends Application {
     }
 
     @Override
-    public void stop() {
+    public void stop() throws Exception {
         springContext.close();
+        super.stop();
     }
 
     public static void main(String[] args) {

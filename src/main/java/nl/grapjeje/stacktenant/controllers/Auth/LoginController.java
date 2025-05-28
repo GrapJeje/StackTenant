@@ -11,6 +11,8 @@ import nl.grapjeje.stacktenant.services.UserService;
 import nl.grapjeje.stacktenant.utils.PassWord;
 import nl.grapjeje.stacktenant.utils.Validate;
 import nl.grapjeje.stacktenant.views.View;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -18,11 +20,8 @@ import java.io.IOException;
 @Component
 public class LoginController extends Controller {
 
-    private final UserService userService;
-
-    public LoginController(UserService userService) {
-        this.userService = userService;
-    }
+    @Autowired
+    private UserService userService;
 
     @FXML
     Label error;
