@@ -37,26 +37,36 @@ public class View {
         return switchScene((Node) event.getSource(), path);
     }
 
-    public static View switchScene(ActionEvent event, String path, double width, double height) throws IOException {
-        return switchScene((Node) event.getSource(), path, width, height);
+    public static View switchScene(ActionEvent event, String path, double width, double height, boolean whIsMin, boolean minIsMax) throws IOException {
+        return switchScene((Node) event.getSource(), path, width, height, whIsMin, minIsMax);
     }
 
     public static View switchScene(Node source, String path) throws IOException {
-        View view = switchScene(source, path, 500, 500);
+        View view = switchScene(source, path, 500, 500, false, false);
         view.getStage().setMaximized(true);
         return view;
     }
 
-    public static View switchScene(Node source, String path, double width, double height) throws IOException {
+    public static View switchScene(Node source, String path, double width, double height, boolean whIsMin, boolean minIsMax) throws IOException {
         ConfigurableApplicationContext context = Main.getSpringContext();
 
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource(path));
+        FXMLLoader loader = load(path);
         loader.setControllerFactory(context::getBean);
 
         Scene scene = new Scene(loader.load(), width, height);
 
         Stage stage = (Stage) source.getScene().getWindow();
         stage.setScene(scene);
+
+        if (whIsMin) {
+            stage.setMinHeight(height);
+            stage.setMinWidth(width);
+        }
+
+        if (minIsMax) {
+            stage.setMaxHeight(height);
+            stage.setMaxWidth(width);
+        }
 
         return new View(path, scene, stage);
     }

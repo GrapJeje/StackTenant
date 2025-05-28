@@ -34,9 +34,7 @@ public class LoginController extends Controller {
 
     @FXML
     void handleRegisterClick(ActionEvent event) throws IOException {
-        View view = View.switchScene(event, "auth/register.fxml", 350, 450);
-        view.getStage().setMinWidth(350);
-        view.getStage().setMinHeight(450);
+        View.switchScene(event, "auth/register.fxml", 400, 500, true, true);
     }
 
     @FXML

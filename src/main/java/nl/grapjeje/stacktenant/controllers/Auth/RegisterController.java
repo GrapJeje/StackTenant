@@ -40,9 +40,7 @@ public class RegisterController extends Controller {
 
     @FXML
     void handleLoginClick(ActionEvent event) throws IOException {
-        View view = View.switchScene(event, "auth/login.fxml", 350, 450);
-        view.getStage().setMinWidth(350);
-        view.getStage().setMinHeight(450);
+        View view = View.switchScene(event, "auth/login.fxml", 400, 500, true, true);
     }
 
     @FXML
@@ -81,9 +79,7 @@ public class RegisterController extends Controller {
             userService.save(newUser);
 
             error.setText("Registratie succesvol! Je kunt nu inloggen.");
-            View view = View.switchScene(event, "auth/login.fxml", 350, 450);
-            view.getStage().setMinWidth(350);
-            view.getStage().setMinHeight(450);
+            View view = View.switchScene(event, "auth/login.fxml", 400, 500, true, true);
         } catch (Exception e) {
             error.setText("Fout bij registreren!");
             e.printStackTrace();

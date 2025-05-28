@@ -20,6 +20,8 @@
 
 .error-text {
     -fx-text-fill: red;
+    -fx-max-height: 2px;
+    -fx-padding: 0;
 }
 
 .form-container {

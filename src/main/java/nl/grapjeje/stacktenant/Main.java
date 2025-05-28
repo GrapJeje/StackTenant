@@ -28,10 +28,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(root, 350, 450);
+        Scene scene = new Scene(root, 400, 500);
         stage.setTitle("StackTenant");
-        stage.setMinWidth(350);
-        stage.setMinHeight(450);
+        stage.setMinWidth(400);
+        stage.setMinHeight(500);
+        stage.setMaxWidth(400);
+        stage.setMaxHeight(500);
         stage.setScene(scene);
         stage.show();
     }
