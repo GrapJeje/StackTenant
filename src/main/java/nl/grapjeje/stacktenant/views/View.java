@@ -27,11 +27,14 @@ public class View {
         this.Path = path;
     }
 
+    View(String path, Scene scene, Stage stage) {
+        this.Path = path;
+        this.scene = scene;
+        this.stage = stage;
+    }
+
     public static View switchScene(ActionEvent event, String path) throws IOException {
-        View view = switchScene((Node) event.getSource(), path, 500, 500);
-        Stage stage = view.getStage();
-        stage.setMaximized(true);
-        return view;
+        return switchScene((Node) event.getSource(), path);
     }
 
     public static View switchScene(ActionEvent event, String path, double width, double height) throws IOException {
@@ -40,28 +43,22 @@ public class View {
 
     public static View switchScene(Node source, String path) throws IOException {
         View view = switchScene(source, path, 500, 500);
-        Stage stage = view.getStage();
-        stage.setMaximized(true);
+        view.getStage().setMaximized(true);
         return view;
     }
 
     public static View switchScene(Node source, String path, double width, double height) throws IOException {
         ConfigurableApplicationContext context = Main.getSpringContext();
 
-        FXMLLoader loader = load(path);
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource(path));
         loader.setControllerFactory(context::getBean);
 
-        Parent root = loader.load();
+        Scene scene = new Scene(loader.load(), width, height);
 
         Stage stage = (Stage) source.getScene().getWindow();
-        Scene scene = new Scene(root, width, height);
         stage.setScene(scene);
 
-        View view = new View(path);
-        view.setScene(scene);
-        view.setStage(stage);
-
-        return view;
+        return new View(path, scene, stage);
     }
 
     @Contract("_ -> new")
