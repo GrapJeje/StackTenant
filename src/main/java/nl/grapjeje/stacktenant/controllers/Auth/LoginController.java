@@ -36,7 +36,7 @@ public class LoginController extends Controller {
     }
 
     @FXML
-    void handleButtonClick() {
+    void handleButtonClick(ActionEvent event) throws IOException {
         error.setText("");
 
         String emailText = email.getText().trim();
@@ -69,7 +69,7 @@ public class LoginController extends Controller {
             return;
         }
 
-        error.setText("Ingelogd!");
+        View.switchScene(event, "Dashboard/Home.fxml");
     }
 
 }

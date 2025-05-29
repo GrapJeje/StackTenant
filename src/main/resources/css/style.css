@@ -4,5 +4,14 @@
 }
 
 .container {
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
 
+#navPane {
+    -fx-background-color: green !important;
+}
+
+#contentPane {
+    -fx-background-color: lightgray !important;
 }

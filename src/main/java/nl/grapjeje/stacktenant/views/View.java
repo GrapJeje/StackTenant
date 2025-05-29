@@ -38,41 +38,50 @@ public class View {
     }
 
     public static View switchScene(ActionEvent event, String path, double width, double height, boolean whIsMin, boolean minIsMax) throws IOException {
-        return switchScene((Node) event.getSource(), path, width, height, whIsMin, minIsMax);
+        return switchScene((Node) event.getSource(), path, width, height, whIsMin, minIsMax, false);
     }
 
     public static View switchScene(Node source, String path) throws IOException {
-        View view = switchScene(source, path, 500, 500, false, false);
-        view.getStage().setMaximized(true);
-        return view;
+        return switchScene(source, path, 500, 500, false, false, true);
     }
 
-    public static View switchScene(Node source, String path, double width, double height, boolean whIsMin, boolean minIsMax) throws IOException {
+    public static View switchScene(Node source, String path, double width, double height,
+                                   boolean whIsMin, boolean minIsMax, boolean maximized) throws IOException {
         ConfigurableApplicationContext context = Main.getSpringContext();
-
         FXMLLoader loader = load(path);
         loader.setControllerFactory(context::getBean);
 
-        Scene scene = new Scene(loader.load(), width, height);
-
+        Parent root = loader.load();
         Stage stage = (Stage) source.getScene().getWindow();
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
 
-        if (whIsMin) {
-            stage.setMinHeight(height);
-            stage.setMinWidth(width);
-        }
+        if (maximized) stage.setMaximized(true);
+        else {
+            stage.setWidth(width);
+            stage.setHeight(height);
 
-        if (minIsMax) {
-            stage.setMaxHeight(height);
-            stage.setMaxWidth(width);
+            if (whIsMin) {
+                stage.setMinHeight(height);
+                stage.setMinWidth(width);
+            }
+
+            if (minIsMax) {
+                stage.setMaxHeight(height);
+                stage.setMaxWidth(width);
+            }
+
+            stage.setMaximized(false);
         }
 
         return new View(path, scene, stage);
     }
 
-    @Contract("_ -> new")
-    public static @NotNull FXMLLoader load(String path) {
-        return new FXMLLoader(View.class.getResource("/views/" + path));
+    public static FXMLLoader load(String path) {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(View.class.getResource("/views/" + path));
+        loader.setControllerFactory(Main.getSpringContext()::getBean);
+        return loader;
     }
 }

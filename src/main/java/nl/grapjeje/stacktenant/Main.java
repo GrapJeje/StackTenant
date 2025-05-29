@@ -22,7 +22,6 @@ public class Main extends Application {
         springContext = SpringApplication.run(Main.class);
 
         FXMLLoader fxmlLoader = View.load("auth/login.fxml");
-        fxmlLoader.setControllerFactory(springContext::getBean);
         root = fxmlLoader.load();
     }
 
@@ -30,10 +29,6 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(root, 400, 500);
         stage.setTitle("StackTenant");
-        stage.setMinWidth(400);
-        stage.setMinHeight(500);
-        stage.setMaxWidth(400);
-        stage.setMaxHeight(500);
         stage.setScene(scene);
         stage.show();
     }
