@@ -1,4 +1,4 @@
-package nl.grapjeje.stacktenant.models;
+package nl.grapjeje.stacktenant.enitity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

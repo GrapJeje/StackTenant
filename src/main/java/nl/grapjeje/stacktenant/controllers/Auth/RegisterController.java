@@ -6,13 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import nl.grapjeje.stacktenant.controllers.Controller;
-import nl.grapjeje.stacktenant.models.User;
+import nl.grapjeje.stacktenant.enitity.User;
 import nl.grapjeje.stacktenant.services.UserService;
 import nl.grapjeje.stacktenant.utils.PassWord;
 import nl.grapjeje.stacktenant.utils.Validate;
 import nl.grapjeje.stacktenant.views.View;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
