@@ -5,7 +5,7 @@ import nl.grapjeje.stacktenant.controllers.Controller;
 import org.springframework.stereotype.Component;
 
 @Component
-@Layout(name = "Dashboard")
+@Layout("Dashboard")
 public class HomeController extends Controller {
 
 }
